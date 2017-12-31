@@ -1,1 +1,0 @@
-Example project of using Java 8, Mave, Spring, and other technologies (by time)

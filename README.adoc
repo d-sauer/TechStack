@@ -1,0 +1,5 @@
+Project that consist some experiments with different technologies and how to combine them.
+
+== Features
+
+* Java 9
