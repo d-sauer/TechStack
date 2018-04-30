@@ -1,5 +1,10 @@
+= Tech stack
+
 Project that consist some experiments with different technologies and how to combine them.
 
-== Features
 
-* Java 9
+
+== References
+
+* link:https://docs.oracle.com/javase/9/[Java 9]
+* link:http://asciidoctor.org/docs/asciidoc-syntax-quick-reference[AsciiDoc Syntax Quick Reference]
