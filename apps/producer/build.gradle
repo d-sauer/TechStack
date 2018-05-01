@@ -1,0 +1,53 @@
+buildscript {
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'jacoco'
+
+group = 'org.github.dsauer'
+version = '0.0.1-SNAPSHOT'
+description = "WebFlux data producer"
+
+sourceCompatibility = 10
+targetCompatibility = 10
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-actuator')
+	implementation('org.springframework.boot:spring-boot-starter-webflux')
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	testCompile('io.projectreactor:reactor-test')
+}
+
+bootRun {
+    if (project.hasProperty('args')) {  // -Pargs="arg1 arg2"
+        args project.args.split('\\s+')   //  Apply arguments for main method
+    }
+
+    if (project.hasProperty('jmc')) {  // -Pjmc
+        jvmArgs '-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8999',
+                '-Dcom.sun.management.jmxremote.ssl=false',
+                '-Dcom.sun.management.jmxremote.authenticate=false',
+                '-XX:+UnlockCommercialFeatures',
+                '-XX:+FlightRecorder',
+                "-XX:FlightRecorderOptions=defaultrecording=true,dumponexit=true,dumponexitpath=$buildDir/flightRecorderResult.jfr"
+    }
+}
+
+bootJar {
+    launchScript()
+    classifier = 'boot'
+}
+
+springBoot {
+    buildInfo()
+}

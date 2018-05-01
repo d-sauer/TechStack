@@ -1,0 +1,47 @@
+ext {
+    springBootVersion = '2.0.1.RELEASE'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE"
+    }
+}
+
+subprojects {
+    buildscript {
+        repositories {
+            maven {
+                url "https://plugins.gradle.org/m2/"
+            }
+        }
+    }
+
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencyManagement {
+        dependencies {
+            dependencySet(group: 'org.springframework.boot', version: springBootVersion) {
+                entry 'spring-boot-starter-webflux'
+                entry 'spring-boot-starter-actuator'
+                entry 'spring-boot-starter-test'
+            }
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.7'
+}

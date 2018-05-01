@@ -1,8 +1,9 @@
+.venv
+classes
+
 # Gradle
 **/.gradle
 **/build/
-**/out/
-classes
 
 # Ignore Gradle GUI config
 **/gradle-app.setting
@@ -15,13 +16,16 @@ classes
 !/gradlew
 !/gradlew.bat
 
+# Maven
+**/target/
+
 # Ignore IntelliJ files
-/.idea/
+.idea
 **/*.iws
 **/*.ipr
 **/*.iml
-**/target/
 **/overlays/
+**/out/
 
 # Ignore Eclipse project files
 **/.settings/
@@ -29,8 +33,13 @@ classes
 **/.classpath
 **/bin
 
-##THIS IS FROM PIPELINE GENERATION
-.venv
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
 
 # OS Files
 **/.DS_Store
