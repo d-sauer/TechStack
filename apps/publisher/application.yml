@@ -1,0 +1,5 @@
+logging:
+  level:
+    org:
+      github:
+        dsauer: DEBUG

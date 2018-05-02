@@ -38,6 +38,10 @@ subprojects {
                 entry 'spring-boot-starter-actuator'
                 entry 'spring-boot-starter-test'
             }
+            dependencySet(group: 'org.junit.jupiter', version: '5.2.0') {
+                entry 'junit-jupiter-api'
+                entry 'junit-jupiter-engine'
+            }
         }
     }
 }

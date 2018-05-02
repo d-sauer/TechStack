@@ -8,3 +8,8 @@ Project that consist some experiments with different technologies and how to com
 
 * link:https://docs.oracle.com/javase/9/[Java 9]
 * link:http://asciidoctor.org/docs/asciidoc-syntax-quick-reference[AsciiDoc Syntax Quick Reference]
+* https://dzone.com/articles/spring-webflux-getting-started
+* https://spring.io/guides/gs/reactive-rest-service/
+* http://www.baeldung.com/junit-5-migration
+* https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-running-unit-tests-with-gradle/
+* http://javasampleapproach.com/testing/springboot-webflux-test-webfluxtest

@@ -11,7 +11,7 @@ apply plugin: 'jacoco'
 
 group = 'org.github.dsauer'
 version = '0.0.1-SNAPSHOT'
-description = "WebFlux data producer"
+description = "Reactive rest service"
 
 sourceCompatibility = 10
 targetCompatibility = 10
@@ -20,12 +20,19 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-actuator')
 	implementation('org.springframework.boot:spring-boot-starter-webflux')
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
-	testCompile('io.projectreactor:reactor-test')
+	testImplementation('io.projectreactor:reactor-test')
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 bootRun {

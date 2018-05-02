@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: pub-time-service
+  jmx:
+    default-domain: ${spring.application.name}

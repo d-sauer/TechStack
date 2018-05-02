@@ -1,6 +1,6 @@
 rootProject.name = 'TechStack'
 
-include ':apps:producer'
+include ':apps:publisher'
 
 // Enable BOM support (https://docs.gradle.org/current/userguide/managing_transitive_dependencies.html#sec:bom_import)
 enableFeaturePreview('IMPROVED_POM_SUPPORT')
