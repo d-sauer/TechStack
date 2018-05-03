@@ -1,15 +1,24 @@
 buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.21"
+        classpath "net.nemerosa:versioning:2.7-beta.1"
 	}
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
+apply plugin: "com.gorylenko.gradle-git-properties"
+apply plugin: "net.nemerosa.versioning"
 apply plugin: 'org.springframework.boot'
+apply plugin: 'eclipse'
 apply plugin: 'jacoco'
 
-group = 'org.github.dsauer'
+group = 'org.github.dsauer.techstack'
 version = '0.0.1-SNAPSHOT'
 description = "Reactive rest service"
 
@@ -30,7 +39,6 @@ dependencies {
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	testImplementation('io.projectreactor:reactor-test')
-
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
@@ -53,6 +61,18 @@ bootRun {
 bootJar {
     launchScript()
     classifier = 'boot'
+    manifest {
+        attributes (
+                'Implementation-Version' : project.version,
+                'Implementation-Title'   : project.name,
+                'Built-By'       : System.properties['user.name'],
+                'Build-Timestamp': new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
+                'Build-Revision' : versioning.info.commit,
+                'Created-By'     : "Gradle ${gradle.gradleVersion}",
+                'Build-Jdk'      : "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})",
+                'Build-OS'       : "${System.properties['os.name']} ${System.properties['os.arch']} ${System.properties['os.version']}"
+        )
+    }
 }
 
 springBoot {
