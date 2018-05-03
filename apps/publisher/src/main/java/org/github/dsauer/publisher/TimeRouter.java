@@ -15,8 +15,9 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Configuration
 public class TimeRouter {
 
+    // Bean name (routeTimeHandler) must be UNIQUE across the application
     @Bean
-    public RouterFunction<ServerResponse> route(TimeHandler timeHandler) {
+    public RouterFunction<ServerResponse> routeTimeHandler(TimeHandler timeHandler) {
         RouterFunction<ServerResponse> route = RouterFunctions.route(RequestPredicates.GET("/now")
                 .and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), timeHandler::now);
 
