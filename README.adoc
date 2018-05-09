@@ -13,3 +13,30 @@ Project that consist some experiments with different technologies and how to com
 * http://www.baeldung.com/junit-5-migration
 * https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-running-unit-tests-with-gradle/
 * http://javasampleapproach.com/testing/springboot-webflux-test-webfluxtest
+
+=== Docker for Mac
+
+* https://logz.io/blog/kubernetes-docker-mac/
+* http://container-solutions.com/docker-for-mac-with-kubernetes-support/
+* https://rominirani.com/tutorial-getting-started-with-kubernetes-with-docker-on-mac-7f58467203fd
+
+Deploy Docker compose to the Kubernetes
+----
+docker stack deploy -c docker-compose.yaml <stack name>
+----
+
+Kubernetes dashboard
+----
+kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+----
+
+Check created pods (_kubernetes-dashboard-.._)
+----
+kubectl get pods --namespace=kube-system
+----
+
+Set port forwarding to that pod (_kubernetes-dashboard_)
+----
+kubectl port-forward kubernetes-dashboard-<hash> 8443:8443 --namespace=kube-system
+----
+

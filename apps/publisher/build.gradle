@@ -1,21 +1,10 @@
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath "gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.21"
-        classpath "net.nemerosa:versioning:2.7-beta.1"
-	}
+plugins {
+    id 'org.springframework.boot' version '2.0.1.RELEASE'
+    id "io.spring.dependency-management" version "1.0.5.RELEASE"
+    id 'net.nemerosa.versioning' version '2.7-beta.1'
 }
 
 apply plugin: 'java'
-apply plugin: "com.gorylenko.gradle-git-properties"
-apply plugin: "net.nemerosa.versioning"
-apply plugin: 'org.springframework.boot'
-apply plugin: 'eclipse'
 apply plugin: 'jacoco'
 
 group = 'org.github.dsauer.techstack'
@@ -29,8 +18,24 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-test {
-    useJUnitPlatform()
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+dependencyManagement {
+    dependencies {
+        dependencySet(group: 'org.springframework.boot', version: '2.0.1.RELEASE') {
+            entry 'spring-boot-starter-webflux'
+            entry 'spring-boot-starter-actuator'
+            entry 'spring-boot-starter-test'
+        }
+        dependencySet(group: 'org.junit.jupiter', version: '5.2.0') {
+            entry 'junit-jupiter-api'
+            entry 'junit-jupiter-engine'
+        }
+    }
 }
 
 dependencies {
@@ -67,7 +72,7 @@ bootJar {
                 'Implementation-Title'   : project.name,
                 'Built-By'       : System.properties['user.name'],
                 'Build-Timestamp': new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
-                'Build-Revision' : versioning.info.commit,
+//                'Build-Revision' : versioning.info.commit,
                 'Created-By'     : "Gradle ${gradle.gradleVersion}",
                 'Build-Jdk'      : "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})",
                 'Build-OS'       : "${System.properties['os.name']} ${System.properties['os.arch']} ${System.properties['os.version']}"
@@ -77,4 +82,12 @@ bootJar {
 
 springBoot {
     buildInfo()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.7'
 }
