@@ -1,4 +1,4 @@
-package org.github.dsauer.publisher;
+package org.github.dsauer.publisher.rest;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import reactor.core.publisher.Mono;
 
-@Component
+//@Component
 public class ExampleHandler {
 
     public Mono<ServerResponse> hello(ServerRequest request) {

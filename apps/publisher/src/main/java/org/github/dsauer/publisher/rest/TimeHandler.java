@@ -1,4 +1,4 @@
-package org.github.dsauer.publisher;
+package org.github.dsauer.publisher.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 import reactor.core.publisher.Mono;
 
-@Component
+//@Component
 public class TimeHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(TimeHandler.class);

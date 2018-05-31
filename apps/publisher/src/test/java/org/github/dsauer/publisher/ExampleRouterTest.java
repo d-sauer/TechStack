@@ -1,5 +1,7 @@
 package org.github.dsauer.publisher;
 
+import org.github.dsauer.publisher.rest.ExampleHandler;
+import org.github.dsauer.publisher.rest.ExampleRouter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package org.github.dsauer.publisher;
+package org.github.dsauer.publisher.rest;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import static org.springframework.http.MediaType.TEXT_PLAIN;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
-@Configuration
+//@Configuration
 public class ExampleRouter {
 
     @Bean

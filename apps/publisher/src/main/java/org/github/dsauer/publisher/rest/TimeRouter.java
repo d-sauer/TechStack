@@ -1,4 +1,4 @@
-package org.github.dsauer.publisher;
+package org.github.dsauer.publisher.rest;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
  * Example with {@link RouterFunction}
  * @see TimeHandler
  */
-@Configuration
+//@Configuration
 public class TimeRouter {
 
     // Bean name (routeTimeHandler) must be UNIQUE across the application
