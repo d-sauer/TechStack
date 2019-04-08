@@ -1,0 +1,5 @@
+techstack:
+  helloworld:
+    metadata:
+      test-key-1: value1
+      test-key-2: value2

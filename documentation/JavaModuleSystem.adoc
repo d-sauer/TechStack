@@ -1,0 +1,13 @@
+= Java Module System
+
+- Gradle plugin: +
+  https://github.com/java9-modularity/gradle-modules-plugin
+
+- Module naming convention: +
+  https://blog.joda.org/2017/04/java-se-9-jpms-module-naming.html
+
+- Testing in the modular world: +
+  https://sormuras.github.io/blog/2018-09-11-testing-in-the-modular-world
+
+- 5 Gradle plugins for working with modular Java projects: +
+  http://andresalmiray.com/5-gradle-plugins-for-working-with-modular-java-projects/
