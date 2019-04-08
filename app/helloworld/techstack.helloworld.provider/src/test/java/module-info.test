@@ -1,0 +1,3 @@
+// Opens module/package for tests only for Spring reflection
+--add-opens
+  techstack.helloworld.runner/com.techstack.helloworld.runner=org.junit.platform.commons,spring.core,spring.beans,spring.context

@@ -1,0 +1,7 @@
+= Setup
+
+- link:https://helm.sh/docs/using_helm/[Using HELM]
+
+Notes:
+
+ - `helm init --history-max 200`
