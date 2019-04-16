@@ -1,0 +1,27 @@
+{
+  "name": "timeline-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/debounce": "^1.2.0",
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.4",
+    "@types/react-dom": "^16.8.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts-ts": "3.1.0",
+    "typescript": "^3.4.3",
+    "@leaseplan/ui": "^0.27.0"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.13",
+    "@velocity/ui.color": "^1.0.1-alpha.802",
+    "@velocity/ui.icon": "^1.0.1-alpha.802"
+  }
+}

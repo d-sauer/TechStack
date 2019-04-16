@@ -1,0 +1,31 @@
+= Frontend React apps
+
+== Velocity
+
+For using Velocity components, in the `app` should have `.npmrc` file with the content
+
+```
+@leaseplan:registry="https://nexus.leaseplan.io/repository/npm-internal/"
+@velocity:registry="https://nexus.leaseplan.io/repository/npm-internal/"
+```
+
+Install necesary Velocity component (list of published Velocity components: https://nexus.leaseplan.io/#browse/browse:npm-internal:%40velocity)
+
+Example:
+
+ - Install colors : `npm i -D @velocity/ui.color@1.0.1-alpha.802`
+ - Install icons : `npm i -D @velocity/ui.icon@1.0.1-alpha.802`
+ - Install full bundle (all the things..legacy) : `npm i -D @leaseplan/ui@0.26.4-alpha.802`
+
+
+Example of using component in the app:
+
+Import:
+```
+import {Icon} from "@velocity/ui.icon";
+```
+
+Code:
+```
+<Icon name="PDF" size="L" />
+```
