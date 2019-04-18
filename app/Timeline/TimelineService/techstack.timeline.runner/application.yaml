@@ -1,0 +1,10 @@
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+
+techstack:
+  helloworld:
+    metadata:
+      key1: value1
+      key2: value2

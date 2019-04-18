@@ -1,0 +1,91 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.1.4.RELEASE'
+//    id "org.openapi.generator" version "4.0.0-beta3"
+}
+
+//compileJava.dependsOn tasks.openApiGenerate
+
+// https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/spring.md
+
+//openApiGenerate {
+//    generatorName = "spring"
+//    inputSpec = "$projectDir/../../api-spec/timeline-service-api.yml".toString()
+//    outputDir = "$projectDir/../techstack.timeline.restapi".toString()
+//    httpUserAgent = "OpenAPI-Generator/4.0.0/java"
+//    apiPackage = "com.techstack.timeline.restapi"
+//    invokerPackage = "com.techstack.timeline.restapi.invoker"
+//    modelPackage = "com.techstack.timeline.restapi.model"
+//    logToStderr = true
+//    generateAliasAsModel = false
+//    enablePostProcessFile = false
+//    modelFilesConstrainedTo = [
+//    ]
+//    configOptions = [
+//            dateLibrary: "java8",
+////            library: "webclient"
+//            groupId: "com.techstack.timeline",
+//            artifactId: "restapi",
+//            reactive: true,
+//            hateoas: true
+////            apiFirst: true
+//    ]
+//    systemProperties = [
+//            modelDocs: "false"
+//    ]
+//
+//}
+
+sourceCompatibility = '12'
+targetCompatibility = '12'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation project(":$openApiModule")
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.1.4.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux:2.1.4.RELEASE'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.4.2'
+    testImplementation ("org.springframework.boot:spring-boot-starter-test:2.1.4.RELEASE") {
+        exclude group: 'junit', module: 'junit'
+        exclude group: 'org.hamcrest'
+        exclude group: 'org.skyscreamer'
+    }
+    testImplementation 'io.projectreactor:reactor-test:3.1.0.RELEASE'
+    testImplementation 'org.hamcrest:hamcrest-core:2.1'
+}
+
+bootRun {
+    if (project.hasProperty('args')) {  // -Pargs="arg1 arg2"
+        args project.args.split('\\s+')   //  Apply arguments for main method
+    }
+
+    // -Pjms    Enable JavaMission Control recording
+    if (project.hasProperty('jmc')) {  // -Pjmc
+        jvmArgs '-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8999',
+                '-Dcom.sun.management.jmxremote.ssl=false',
+                '-Dcom.sun.management.jmxremote.authenticate=false',
+                '-XX:+UnlockCommercialFeatures',
+                '-XX:+FlightRecorder',
+                "-XX:FlightRecorderOptions=defaultrecording=true,dumponexit=true,dumponexitpath=$buildDir/flightRecorderResult.jfr"
+    }
+}
+
+springBoot {
+    buildInfo()
+}
+
+bootJar {
+    launchScript()
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

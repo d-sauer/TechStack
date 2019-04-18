@@ -1,0 +1,8 @@
+pluginManagement {
+	repositories {
+		gradlePluginPortal()
+	}
+}
+rootProject.name = 'timeline'
+
+include "techstack.timeline.runner", "techstack.timeline.restapi"

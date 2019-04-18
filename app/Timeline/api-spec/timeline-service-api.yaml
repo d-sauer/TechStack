@@ -1,0 +1,82 @@
+# https://github.com/OAI/OpenAPI-Specification/blob/v3.1.0-dev/versions/3.0.2.md
+
+openapi: "3.0.2"
+info:
+  version: 0.0.1
+  title: Timeline service
+  license:
+    name: TechStack Sandbox
+servers:
+  - url: http://api.leaseplan.com/services/techstack/timeline/v1
+  - url: http://acc-api.leaseplan.com/services/techstack/timeline/v1
+  - url: http://test-api.leaseplan.com/services/techstack/timeline/v1
+  - url: http://dev-api.leaseplan.com/services/techstack/timeline/v1
+paths:
+  /timeline:
+    get:
+      summary: Get last 10 timeline events for a user
+      operationId: getUserTimeline
+      responses:
+        200:
+          description: Timeline events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimelineEvent'
+        401:
+          description: User is not authorized to access a timeline
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    TimelineEvent:
+      type: object
+      required:
+        - uuid
+        - date
+      properties:
+        uuid:
+          description: UUID of the event
+          type: string
+        date:
+          type: string
+          format: date-time
+        status:
+          type: string
+          default: "pending"
+        category:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/TimelineEventMetadata'
+    TimelineEventMetadata:
+      type: object
+      properties:
+        origin:
+          type: string
+          description: System origin of the event
+        originId:
+          type: string
+          description: ID in the origin system
+    Error:
+      type: object
+      required:
+        - activityId
+        - code
+        - message
+      properties:
+        activityId:
+          type: string
+        code:
+          type: string
+        message:
+          description: Technical description of the error in english.
+            This message is never message displayed directly to the end user.
+            Based on error code message can be localised
+          type: string

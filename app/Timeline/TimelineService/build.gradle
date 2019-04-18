@@ -1,0 +1,51 @@
+plugins {
+    id "org.openapi.generator" version "4.0.0-beta3"
+}
+
+group = 'com.techstack'
+version = '0.0.1-SNAPSHOT'
+description = 'Show user timeline events'
+
+
+ext {
+    openApiModuleArtifact = "restapi"
+    openApiModule         = "techstack.timeline.$openApiModuleArtifact"
+    openApiPackage        = "com.techstack.timeline.$openApiModuleArtifact"
+    openApiInputDir       = "$projectDir/../api-spec/timeline-service-api.yaml"
+    serverOutputDir       = "$projectDir/$openApiModule"
+}
+
+task buildSpringServerApi(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
+    generatorName = "spring"
+    validateSpec = true
+    inputSpec = openApiInputDir.toString()
+    outputDir = serverOutputDir.toString()
+    configOptions = [
+            apiPackage       : "${openApiPackage}.api".toString(),
+            invokerPackage   : "${openApiPackage}.invoker".toString(),
+            modelPackage     : "${openApiPackage}.model".toString(),
+            configPackage    : "${openApiPackage}.config".toString(),
+            groupId          : openApiPackage.toString(),
+            artifactId       : openApiModuleArtifact,
+            dateLibrary      : "java8",
+            delegatePattern  : true,
+//            useBeanValidation: true,
+//            useTags          : true,
+            hateoas          : true,
+            apiFirst         : true,
+            reactive         : true
+    ]
+}
+
+task createGradleSubmodule(type:Exec) {
+    workingDir "techstack.timeline.restapi"
+    commandLine("../gradlew", "init")
+}
+
+task cleanGradleSubmodule(type:Delete) {
+    delete "${openApiModule}/settings.gradle"
+}
+
+task buildServerApi(dependsOn: [buildSpringServerApi, createGradleSubmodule, cleanGradleSubmodule]) {
+    description "Build Server API Gradle subproject"
+}

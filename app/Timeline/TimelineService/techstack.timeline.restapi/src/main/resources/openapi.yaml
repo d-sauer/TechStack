@@ -1,0 +1,91 @@
+openapi: 3.0.2
+info:
+  license:
+    name: TechStack Sandbox
+  title: Timeline service
+  version: 0.0.1
+servers:
+- url: http://api.leaseplan.com/services/techstack/timeline/v1
+- url: http://acc-api.leaseplan.com/services/techstack/timeline/v1
+- url: http://test-api.leaseplan.com/services/techstack/timeline/v1
+- url: http://dev-api.leaseplan.com/services/techstack/timeline/v1
+paths:
+  /timeline:
+    get:
+      operationId: getUserTimeline
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TimelineEvent'
+                type: array
+          description: Timeline events
+        401:
+          description: User is not authorized to access a timeline
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Get last 10 timeline events for a user
+      x-accepts: application/json
+components:
+  schemas:
+    TimelineEvent:
+      example:
+        date: 2000-01-23T04:56:07.000+00:00
+        metadata:
+          originId: originId
+          origin: origin
+        category: category
+        uuid: uuid
+        status: pending
+      properties:
+        uuid:
+          description: UUID of the event
+          type: string
+        date:
+          format: date-time
+          type: string
+        status:
+          default: pending
+          type: string
+        category:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/TimelineEventMetadata'
+      required:
+      - date
+      - uuid
+      type: object
+    TimelineEventMetadata:
+      example:
+        originId: originId
+        origin: origin
+      properties:
+        origin:
+          description: System origin of the event
+          type: string
+        originId:
+          description: ID in the origin system
+          type: string
+      type: object
+    Error:
+      properties:
+        activityId:
+          type: string
+        code:
+          type: string
+        message:
+          description: Technical description of the error in english. This message
+            is never message displayed directly to the end user. Based on error code
+            message can be localised
+          type: string
+      required:
+      - activityId
+      - code
+      - message
+      type: object
