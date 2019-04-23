@@ -20,7 +20,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link TimelineApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-18T15:53:43.765381+02:00[Europe/Amsterdam]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-23T08:12:28.883123+02:00[Europe/Amsterdam]")
 
 public interface TimelineApiDelegate {
 

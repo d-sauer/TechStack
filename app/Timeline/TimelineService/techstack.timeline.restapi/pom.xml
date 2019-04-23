@@ -29,37 +29,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>4.0.0-beta3</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>src/main/resources/openapi.yaml</inputSpec>
-                            <generatorName>spring</generatorName>
-                            <apiPackage>com.techstack.timeline.restapi.api</apiPackage>
-                            <modelPackage>com.techstack.timeline.restapi.model</modelPackage>
-                            <generateSupportingFiles>false</generateSupportingFiles>
-                            <configOptions>
-                                <modelPackage>com.techstack.timeline.restapi.model</modelPackage>
-                                <configPackage>com.techstack.timeline.restapi.config</configPackage>
-                                <groupId>com.techstack.timeline.restapi</groupId>
-                                <invokerPackage>com.techstack.timeline.restapi.invoker</invokerPackage>
-                                <dateLibrary>java8</dateLibrary>
-                                <apiPackage>com.techstack.timeline.restapi.api</apiPackage>
-                                <reactive>true</reactive>
-                                <hateoas>true</hateoas>
-                                <artifactId>restapi</artifactId>
-                                <delegatePattern>true</delegatePattern>
-                            </configOptions>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -94,11 +63,6 @@
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-        </dependency>
-        <!-- Spring HATEOAS -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-hateoas</artifactId>
         </dependency>
     </dependencies>
 </project>

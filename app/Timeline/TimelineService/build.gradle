@@ -31,8 +31,8 @@ task buildSpringServerApi(type: org.openapitools.generator.gradle.plugin.tasks.G
             delegatePattern  : true,
 //            useBeanValidation: true,
 //            useTags          : true,
-            hateoas          : true,
-            apiFirst         : true,
+//            hateoas          : true,
+//            apiFirst         : true,
             reactive         : true
     ]
 }
@@ -47,5 +47,6 @@ task cleanGradleSubmodule(type:Delete) {
 }
 
 task buildServerApi(dependsOn: [buildSpringServerApi, createGradleSubmodule, cleanGradleSubmodule]) {
-    description "Build Server API Gradle subproject"
+    group = "OpenAPI"
+    description = "Build Server API Gradle subproject"
 }

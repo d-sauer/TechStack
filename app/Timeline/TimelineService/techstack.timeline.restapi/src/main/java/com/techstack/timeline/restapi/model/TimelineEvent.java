@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 /**
  * TimelineEvent
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-18T15:42:11.577035+02:00[Europe/Amsterdam]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-23T08:12:28.883123+02:00[Europe/Amsterdam]")
 
 public class TimelineEvent   {
   @JsonProperty("uuid")

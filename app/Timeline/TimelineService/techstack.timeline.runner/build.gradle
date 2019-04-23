@@ -1,40 +1,8 @@
 plugins {
     id 'java'
     id 'org.springframework.boot' version '2.1.4.RELEASE'
-//    id "org.openapi.generator" version "4.0.0-beta3"
 }
 
-//compileJava.dependsOn tasks.openApiGenerate
-
-// https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/spring.md
-
-//openApiGenerate {
-//    generatorName = "spring"
-//    inputSpec = "$projectDir/../../api-spec/timeline-service-api.yml".toString()
-//    outputDir = "$projectDir/../techstack.timeline.restapi".toString()
-//    httpUserAgent = "OpenAPI-Generator/4.0.0/java"
-//    apiPackage = "com.techstack.timeline.restapi"
-//    invokerPackage = "com.techstack.timeline.restapi.invoker"
-//    modelPackage = "com.techstack.timeline.restapi.model"
-//    logToStderr = true
-//    generateAliasAsModel = false
-//    enablePostProcessFile = false
-//    modelFilesConstrainedTo = [
-//    ]
-//    configOptions = [
-//            dateLibrary: "java8",
-////            library: "webclient"
-//            groupId: "com.techstack.timeline",
-//            artifactId: "restapi",
-//            reactive: true,
-//            hateoas: true
-////            apiFirst: true
-//    ]
-//    systemProperties = [
-//            modelDocs: "false"
-//    ]
-//
-//}
 
 sourceCompatibility = '12'
 targetCompatibility = '12'
@@ -42,6 +10,13 @@ targetCompatibility = '12'
 repositories {
     mavenCentral()
     jcenter()
+}
+
+configurations {
+    developmentOnly
+    runtimeOnly {
+        extendsFrom developmentOnly
+    }
 }
 
 dependencies {
@@ -57,6 +32,8 @@ dependencies {
     }
     testImplementation 'io.projectreactor:reactor-test:3.1.0.RELEASE'
     testImplementation 'org.hamcrest:hamcrest-core:2.1'
+
+    developmentOnly("org.springframework.boot:spring-boot-devtools:2.1.4.RELEASE")
 }
 
 bootRun {

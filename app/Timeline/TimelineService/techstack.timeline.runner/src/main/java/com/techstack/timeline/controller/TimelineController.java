@@ -25,10 +25,10 @@ public class TimelineController implements TimelineApiDelegate {
             events.add(new TimelineEvent()
                             .uuid(UUID.randomUUID().toString())
                             .date(LocalDateTime.now().atOffset(ZoneOffset.UTC))
+                            .category("fuel")
                       );
         }
 
-        ResponseEntity responseEntity = new ResponseEntity(Flux.just(events), HttpStatus.OK);
-        return Mono.just(responseEntity);
+        return Mono.just(new ResponseEntity(Flux.just(events), HttpStatus.OK));
     }
 }

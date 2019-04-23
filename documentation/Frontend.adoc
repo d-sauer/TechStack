@@ -2,14 +2,18 @@
 
 == Velocity
 
-For using Velocity components, in the `app` should have `.npmrc` file with the content
+For using Velocity components, in the `app`
+should have `.npmrc` file with the content
 
 ```
 @leaseplan:registry="https://nexus.leaseplan.io/repository/npm-internal/"
 @velocity:registry="https://nexus.leaseplan.io/repository/npm-internal/"
 ```
 
-Install necesary Velocity component (list of published Velocity components: https://nexus.leaseplan.io/#browse/browse:npm-internal:%40velocity)
+Install necessary Velocity component
+(list of published Velocity components:
+https://nexus.leaseplan.io/#browse/browse:npm-internal:%40velocity)
+
 
 Example:
 
